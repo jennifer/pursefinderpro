@@ -20,9 +20,10 @@ router.get('/', function(req, res, next) {
     const s3 = new AWS.S3();
     const response = await s3.listObjectsV2({
       Bucket: 'coach-catalog',
-      Prefix: ''
+      Prefix: 'Coach/1981'
     }).promise();
-    console.log(response);
+    const array = response.Contents;
+    //array.forEach(obj => console.log(obj.Key));
   }
   catch (e) {
     console.log('error', e);
@@ -31,3 +32,5 @@ router.get('/', function(req, res, next) {
 })();
 
 module.exports = router;
+
+//https://s3-us-west-2.amazonaws.com/coach-catalog/
