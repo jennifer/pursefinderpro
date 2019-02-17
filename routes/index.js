@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const aws = require('aws-sdk');
-const config = require('../config');
+const AWS = require('AWS-sdk');
+const config = require('../config.json');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -11,19 +11,19 @@ router.get('/', function(req, res, next) {
 // Get S3 images using async
 (async function() {
   try {
-    aws.config.setPromisesDependency();
-    aws.config.update({
-      accessKeyId: aws.config.accessKeyId,
-      secretAccessKey: aws.config.secretAccessKey,
-      region: aws.config.region
+    AWS.config.setPromisesDependency();
+    AWS.config.update({
+      accessKeyId: config.accessKeyId,
+      secretAccessKey: config.secretAccessKey,
+      region: 'us-west-2'
     });
-    const s3 = new aws.S3();
+    const s3 = new AWS.S3();
     const response = await s3.listObjectsV2({
-      Bucket: 'coach-catalog'
-    });
+      Bucket: 'coach-catalog',
+      Prefix: ''
+    }).promise();
     console.log(response);
   }
-  
   catch (e) {
     console.log('error', e);
   }
