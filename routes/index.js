@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const AWS = require('AWS-sdk');
-const config = require('../config.json');
+//const AWS = require('AWS-sdk');
+//const config = require('../config.json');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
