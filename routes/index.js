@@ -8,7 +8,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-// Get S3 images using async
+
+/* Get S3 images using async
 (async function() {
   try {
     AWS.config.setPromisesDependency();
@@ -30,6 +31,7 @@ router.get('/', function(req, res, next) {
   }
 
 })();
+*/
 
 module.exports = router;
 
